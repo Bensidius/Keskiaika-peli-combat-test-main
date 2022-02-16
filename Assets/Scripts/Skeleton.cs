@@ -47,7 +47,7 @@ void OnTriggerEnter2D(Collider2D other)
     if ((other.gameObject.tag == "EnemyTrigger" || other.gameObject.tag == "Player") && !isDead) // If enemy hits trigger or player's corpse
     {
        speed = -speed; // Change the moving direction
-       transform.localScale = new Vector3(transform.localScale.x * -1, 3.5f, 3.5f);  // flip the whole object
+       transform.localScale = new Vector3(transform.localScale.x * -1, 2.5f, 2.5f);  // flip the whole object
 
        //print("Törmäys collideriin" + "speed: " + speed);
     }

@@ -34,7 +34,7 @@ public class Enemy : MonoBehaviour
 
 void Die()
 {
-    Debug.Log("Enemy died!");
+    //Debug.Log("Enemy died!");
     // Die Animation
     animator.SetBool("IsDead", true);
 
