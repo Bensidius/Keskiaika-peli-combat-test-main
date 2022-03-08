@@ -9918,7 +9918,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5087508534725201065, guid: 7bfb3e996eb29de49a44368c20131766, type: 3}
       propertyPath: attackRange
-      value: 0.65
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 5087508534725201069, guid: 7bfb3e996eb29de49a44368c20131766, type: 3}
       propertyPath: m_Constraints
@@ -51125,15 +51125,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6320543828435822400, guid: 3e66e188904ae5f448d43c828a1a2835, type: 3}
       propertyPath: m_FlipX
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6320543828435822402, guid: 3e66e188904ae5f448d43c828a1a2835, type: 3}
       propertyPath: m_Size.x
-      value: 0.33030522
+      value: 0.2714477
       objectReference: {fileID: 0}
     - target: {fileID: 6320543828435822402, guid: 3e66e188904ae5f448d43c828a1a2835, type: 3}
       propertyPath: m_Offset.x
-      value: 0.015488096
+      value: -0.025151625
       objectReference: {fileID: 0}
     - target: {fileID: 6320543828435822414, guid: 3e66e188904ae5f448d43c828a1a2835, type: 3}
       propertyPath: player
@@ -51149,11 +51149,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6320543829141459410, guid: 3e66e188904ae5f448d43c828a1a2835, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -11.51
+      value: 2.39
       objectReference: {fileID: 0}
     - target: {fileID: 6320543829141459410, guid: 3e66e188904ae5f448d43c828a1a2835, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.67
+      value: 11.65
       objectReference: {fileID: 0}
     - target: {fileID: 6320543829141459410, guid: 3e66e188904ae5f448d43c828a1a2835, type: 3}
       propertyPath: m_LocalPosition.z
@@ -58717,6 +58717,10 @@ PrefabInstance:
     - target: {fileID: 6320543829141459422, guid: 3e66e188904ae5f448d43c828a1a2835, type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 6320543829141459422, guid: 3e66e188904ae5f448d43c828a1a2835, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6320543829141459423, guid: 3e66e188904ae5f448d43c828a1a2835, type: 3}
       propertyPath: target

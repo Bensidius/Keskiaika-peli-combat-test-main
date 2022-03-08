@@ -214,15 +214,15 @@ public class Player : MonoBehaviour {
         
         
         
-        if (other.gameObject.tag == "Enemy")  // If player hits the spikes
-        {
-            canControl = false;
-            anim.SetBool("Death", true);
-            isDead = true;
+        //if (other.gameObject.tag == "Enemy")  // If player hits the spikes
+        //{
+          //  canControl = false;
+            //anim.SetBool("Death", true);
+            //isDead = true;
 
            
             
-        }
+        //}
         if (other.gameObject.tag == "Finish") // If player hits the goal
         { 
             canControl = false;
