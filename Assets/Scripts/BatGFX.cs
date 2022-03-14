@@ -38,11 +38,11 @@ public class BatGFX : MonoBehaviour
         //Sprite change direction
         if (aiPath.desiredVelocity.x >= 0.01f)
         {
-            transform.localScale = new Vector3(-2.5f, 2.5f, 2.5f);
+            transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
         }
         else if (aiPath.desiredVelocity.x <= -0.01f)
         {
-            transform.localScale = new Vector3(2.5f, 2.5f, 2.5f);
+            transform.localScale = new Vector3(-2.5f, 2.5f, 2.5f);
         }
     }
 }
