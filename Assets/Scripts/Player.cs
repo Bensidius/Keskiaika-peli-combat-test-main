@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 
 public class Player : MonoBehaviour {
 
@@ -231,6 +233,21 @@ public class Player : MonoBehaviour {
             
         }
     }
+
+private void OnCollisionEnter(Collision collision)
+{
+    if (collision.gameObject.tag == "Enemy")
+    {
+        Destroy(gameObject);
+
+        // Let's load GameOver -Scene
+
+        SceneManager.LoadScene("GameOver");
+    }
+}
+
+
+
 
 
     void OnCollisionStay2D(Collision2D other)
