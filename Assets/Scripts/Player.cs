@@ -34,7 +34,7 @@ public class Player : MonoBehaviour {
 
 
     // Private components
-    private Rigidbody2D rb;
+    Rigidbody2D rigidbody2d;
     private SpriteRenderer sRend;
     private Animator anim;
 
@@ -42,6 +42,7 @@ public class Player : MonoBehaviour {
         public Transform groundCheck;
         public LayerMask groundMask;
 
+        Vector2 lookDirection = new Vector2(1,0);
 
 
 
@@ -55,7 +56,7 @@ public class Player : MonoBehaviour {
 
 
 
-        rb = GetComponent<Rigidbody2D>(); // Search for the rigidbody component
+        rigidbody2d = GetComponent<Rigidbody2D>(); // Search for the rigidbody component
         sRend = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
         groundMask = LayerMask.GetMask("Ground");
@@ -65,7 +66,7 @@ public class Player : MonoBehaviour {
         levelFinished = false;
         onSlope = false;
         
-        rb.sharedMaterial = sticky;
+        rigidbody2d.sharedMaterial = sticky;
 
     }
     void Update()
@@ -77,13 +78,13 @@ public class Player : MonoBehaviour {
 // Jump
         if (Input.GetKeyDown(KeyCode.Space) && hitGround)
          {
-                rb.velocity = new Vector2(rb.velocity.x, jumpForce);
+                rigidbody2d.velocity = new Vector2(rigidbody2d.velocity.x, jumpForce);
                 anim.SetBool("Jumping", true);
                 onGround = false;
                 onSlope = false;
          }
         // Checking if falling
-        if(rb.velocity.y < 0f && !hitGround)
+        if(rigidbody2d.velocity.y < 0f && !hitGround)
             {
                 anim.SetBool("Jumping", false);
                 anim.SetBool("Falling", true);
@@ -93,7 +94,20 @@ public class Player : MonoBehaviour {
                 anim.SetBool("Falling", false);
             }
 
-
+        
+        
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            RaycastHit2D hit = Physics2D.Raycast(rigidbody2d.position + Vector2.up * 0.2f, lookDirection, 1.5f, LayerMask.GetMask("NPC"));
+            if (hit.collider != null)
+            {
+                Princess character = hit.collider.GetComponent<Princess>();
+                if (character != null)
+                {
+                    character.DisplayDialog();
+                }
+            }
+        }
 
 
 
@@ -129,23 +143,23 @@ public class Player : MonoBehaviour {
     // Update is called once per frame
     void FixedUpdate()
     {
-        float ySpeed = rb.velocity.y; 
+        float ySpeed = rigidbody2d.velocity.y; 
 
         // If player is on the ground, change the physics to material to high friction 
         if(hitGround)
         {
-            rb.sharedMaterial = sticky;
+            rigidbody2d.sharedMaterial = sticky;
         }
 
         // if not, change to no friction
         else
         {
-            rb.sharedMaterial = slippery;
+            rigidbody2d.sharedMaterial = slippery;
             onGround = false;
         }
 
         // eliminate slow fall after a slope
-        if (onGround && !onSlope && rb.velocity.y <0f)
+        if (onGround && !onSlope && rigidbody2d.velocity.y <0f)
         {
             onGround = false;
         }
@@ -158,13 +172,13 @@ public class Player : MonoBehaviour {
         // movement
         if(Input.GetKey(KeyCode.A))
         {
-            rb.velocity = new Vector2(-speed, ySpeed);
+            rigidbody2d.velocity = new Vector2(-speed, ySpeed);
             sRend.flipX = true;
             anim.SetBool("Moving", true); 
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            rb.velocity = new Vector2(speed, ySpeed);
+            rigidbody2d.velocity = new Vector2(speed, ySpeed);
             sRend.flipX = false;
             anim.SetBool("Moving", true);
         }
@@ -176,7 +190,7 @@ public class Player : MonoBehaviour {
         // If landed & not moving
         else if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D) && onGround)
         {
-            rb.velocity = Vector2.zero;
+            rigidbody2d.velocity = Vector2.zero;
             anim.SetBool("Moving", false);
         }
         
@@ -226,6 +240,13 @@ public class Player : MonoBehaviour {
             
         }
         if (other.gameObject.tag == "Finish") // If player hits the goal
+        { 
+            canControl = false;
+            anim.SetBool("Moving", false);
+            levelFinished = true;
+            
+        }
+        if (other.gameObject.tag == "Princess") // If player hits the goal
         { 
             canControl = false;
             anim.SetBool("Moving", false);
